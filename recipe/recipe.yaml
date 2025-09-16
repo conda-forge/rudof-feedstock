@@ -21,6 +21,7 @@ outputs:
       name: rudof
     requirements:
       build:
+        - ${{ compiler("c") }}
         - ${{ compiler("rust") }}
         - ${{ stdlib("c") }}
         - cargo-bundle-licenses
@@ -42,6 +43,7 @@ outputs:
       name: pyrudof
     requirements:
       build:
+        - ${{ compiler("c") }}
         - ${{ compiler("rust") }}
         - ${{ stdlib("c") }}
         - cargo-bundle-licenses
