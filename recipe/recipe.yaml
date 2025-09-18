@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.1.92"
+  version: "0.1.94"
 
 recipe:
   name: rudof-split
@@ -10,10 +10,10 @@ recipe:
 
 source:
   url: https://github.com/rudof-project/rudof/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 8031c839cab0be8f929d1317e5080a932dfe690908c52dec413e423829773f69
+  sha256: fc37bf383c4bd16660004e804beada06268c6d794fd4bde105fb01d2ec72fbd9
 
 build:
-  number: 2
+  number: 0
   skip: not (match(python, python_min ~ ".*") and is_abi3)
 
 outputs:
