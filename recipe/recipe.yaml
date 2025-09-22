@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.1.101"
+  version: "0.1.102"
 
 recipe:
   name: rudof-split
@@ -10,7 +10,7 @@ recipe:
 
 source:
   url: https://github.com/rudof-project/rudof/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 55991d68de953580b67e0fe1fe13a0866e8a41fa27389556c75da8b1a32cc2bb
+  sha256: 43a9a3832a6e154423ad1c5ddd7cbe71d53b5939359a9ae60f97d161b64a7e6b
 
 build:
   number: 0
