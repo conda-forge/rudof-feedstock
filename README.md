@@ -20,8 +20,8 @@ Home: https://github.com/rudof-project/rudof
 
 Package license: Apache-2.0 OR MIT
 
-Summary: rudof is a command-line tool to inspect and validate RDF data using ShEx or 
-SHACL, and to allow conversion between different RDF data modeling languages 
+Summary: rudof is a command-line tool to inspect and validate RDF data using ShEx or
+SHACL, and to allow conversion between different RDF data modeling languages
 like ShEx, SHACL, DCTAP, etc.
 
 Current build status
