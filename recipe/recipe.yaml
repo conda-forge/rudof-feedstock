@@ -3,6 +3,8 @@ schema_version: 1
 
 context:
   version: "0.1.143"
+  maturin_min: "1"
+  maturin_max: "2"
 
 recipe:
   name: rudof-split
@@ -26,6 +28,8 @@ outputs:
         - ${{ stdlib("c") }}
         - cargo-bundle-licenses
         - make
+      host:
+        - openssl
     build:
       script:
         file: build-rudof
@@ -51,10 +55,12 @@ outputs:
         - if: build_platform != target_platform
           then:
             - cross-python_${{ target_platform }}
-            - maturin >=1,<2
+            - maturin >=${{ maturin_min }},<${{ maturin_max }}
+            - openssl
             - python
       host:
-        - maturin >=1,<2
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+        - openssl
         - pip
         - python
         - python-abi3
@@ -93,8 +99,8 @@ about:
     - LICENSE-APACHE
     - LICENSE-MIT
   summary: |-
-    rudof is a command-line tool to inspect and validate RDF data using ShEx or 
-    SHACL, and to allow conversion between different RDF data modeling languages 
+    rudof is a command-line tool to inspect and validate RDF data using ShEx or
+    SHACL, and to allow conversion between different RDF data modeling languages
     like ShEx, SHACL, DCTAP, etc.
   homepage: https://github.com/rudof-project/rudof
 
