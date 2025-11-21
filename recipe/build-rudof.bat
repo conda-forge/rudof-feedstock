@@ -1,5 +1,6 @@
 @echo on
 set CARGO_PROFILE_RELEASE_STRIP=symbols
+set "OPENSSL_DIR=%LIBRARY_PREFIX%"
 
 cd rudof_cli
 
