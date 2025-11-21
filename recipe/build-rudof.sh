@@ -2,6 +2,7 @@
 set -eux
 
 export CARGO_PROFILE_RELEASE_STRIP=symbols
+export OPENSSL_DIR="${PREFIX}"
 
 cd rudof_cli
 
