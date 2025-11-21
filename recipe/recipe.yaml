@@ -28,6 +28,7 @@ outputs:
         - ${{ stdlib("c") }}
         - cargo-bundle-licenses
         - make
+        - pkg-config
       host:
         - openssl
     build:
@@ -52,6 +53,7 @@ outputs:
         - ${{ stdlib("c") }}
         - cargo-bundle-licenses
         - make
+        - pkg-config
         - if: build_platform != target_platform
           then:
             - cross-python_${{ target_platform }}
