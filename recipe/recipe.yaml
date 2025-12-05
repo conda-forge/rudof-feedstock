@@ -5,6 +5,7 @@ context:
   version: "0.1.144"
   maturin_min: "1"
   maturin_max: "2"
+  python_check_max: "3.14"
 
 recipe:
   name: rudof-split
@@ -80,7 +81,7 @@ outputs:
           pip_check: true
           python_version:
             - ${{ python_min }}.*
-            - 3.13.*
+            - ${{ python_check_max }}.*
       - requirements:
           run:
             - pytest-cov
