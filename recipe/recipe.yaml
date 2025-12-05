@@ -60,6 +60,9 @@ outputs:
             - maturin >=${{ maturin_min }},<${{ maturin_max }}
             - openssl
             - python
+        - if: win
+          then:
+            - perl
       host:
         - maturin >=${{ maturin_min }},<${{ maturin_max }}
         - openssl
