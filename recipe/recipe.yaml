@@ -30,6 +30,9 @@ outputs:
         - cargo-bundle-licenses
         - make
         - pkg-config
+        - if: win
+          then:
+            - perl
       host:
         - openssl
     build:
@@ -63,7 +66,7 @@ outputs:
             - python
         - if: win
           then:
-            - m2-perl
+            - perl
       host:
         - maturin >=${{ maturin_min }},<${{ maturin_max }}
         - openssl
