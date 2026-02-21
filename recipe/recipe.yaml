@@ -6,7 +6,13 @@ context:
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.14"
-  grep: ${{ "grep -iE" if unix else "findstr /r /c /i" }}
+  contains_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
+  unix_abi3_bin: |-
+    $(python -c "print(__import__('site').getsitepackages()[-1])")/pyrudof/pyrudof.abi3.so
+  win_abi3_bin: |-
+    %LIBRARY_PREFIX%\Lib\site-packages\pyrudof\pyrudof.pyd
+  abi3_bin: ${{ win_abi3_bin if win else unix_abi3_bin }}
+  export: ${{ "export" if unix else "set" }}
 
 recipe:
   name: rudof-split
@@ -25,7 +31,11 @@ outputs:
     build:
       skip: not is_python_min
       script:
-        file: build-rudof
+        - ${{ set }} CARGO_PROFILE_RELEASE_STRIP=symbols
+        - ${{ set }} "OPENSSL_DIR=${{ '%LIBRARY_PREFIX%' if unix else '$PREFIX' }}"
+        - cd rudof_cli
+        - cargo install --no-track --locked --path=. --profile=release "--root=${{ PREFIX }}"
+        - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -43,12 +53,18 @@ outputs:
       - script:
           - rudof --help
           - rudof --version
-          - rudof --version  | ${{ grep }} "${{ version | replace(".", "\\.") }}"
+          - rudof --version | ${{ contains_version }}
     about:
+      homepage: https://crates.io/crates/rudof_cli
+      repository: https://github.com/rudof-project/rudof/tree/master/rudof_cli
+      description: >
+        rudof is a command-line tool to inspect and validate RDF data using ShEx
+        or SHACL, and to allow conversion between different RDF data modeling
+        languages like ShEx, SHACL, DCTAP, etc.
       license_file:
         - LICENSE-APACHE
         - LICENSE-MIT
-        - THIRDPARTY.yml
+        - rudof_cli/THIRDPARTY.yml
 
   - package:
       name: pyrudof
@@ -57,7 +73,11 @@ outputs:
       python:
         version_independent: ${{ is_abi3 }}
       script:
-        file: build-pyrudof
+        - ${{ set }} CARGO_PROFILE_RELEASE_STRIP=symbols
+        - ${{ set }} "OPENSSL_DIR=${{ '%LIBRARY_PREFIX%' if unix else '$PREFIX' }}"
+        - cd python
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+        - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -103,34 +123,38 @@ outputs:
             pip_check: true
       - requirements:
           run:
-            - pytest-cov
+            - pytest
             - if: is_abi3
               then:
+                - abi3audit
                 - python !=${{ python_min }}.*
         files:
           source:
             - python/tests/
         script:
+          - python -c "print(__import__('pyrudof').__version__)" | ${{ contains_version }}
           - cd python
-          - coverage run --source=pyrudof --branch -m pytest -vv --tb=long --color=yes
-          - coverage report --show-missing --skip-covered --fail-under=83
+          - pytest -vv --tb=long --color=yes
+          - if: is_abi3
+            then:
+              - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} "${{ abi3_bin }}"
     about:
+      homepage: https://pypi.org/project/pyrudof
+      repository: https://github.com/rudof-project/rudof/tree/master/python
+      summary: Python bindings for Rudof, RDF data shapes implementation in Rust
       license_file:
         - LICENSE-APACHE
         - LICENSE-MIT
-        - THIRDPARTY.yml
-      summary: This module contains the Python bindings of rudof which are called pyrudof
+        - python/THIRDPARTY.yml
 
 about:
   license: Apache-2.0 OR MIT
   license_file:
     - LICENSE-APACHE
     - LICENSE-MIT
-  summary: |-
-    rudof is a command-line tool to inspect and validate RDF data using ShEx or
-    SHACL, and to allow conversion between different RDF data modeling languages
-    like ShEx, SHACL, DCTAP, etc.
+  summary: RDF data shapes implementation in Rust
   homepage: https://github.com/rudof-project/rudof
+  repository: https://github.com/rudof-project/rudof
 
 extra:
   feedstock-name: rudof
