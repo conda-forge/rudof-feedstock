@@ -6,6 +6,7 @@ context:
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.14"
+  grep: ${{ "grep -iE" if unix else "findstr /r /c /i" }}
 
 recipe:
   name: rudof-split
@@ -17,11 +18,13 @@ source:
 
 build:
   number: 0
-  skip: not (match(python, python_min ~ ".*") and is_abi3)
 
 outputs:
   - package:
       name: rudof
+    build:
+      script:
+        file: build-rudof
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -35,13 +38,11 @@ outputs:
             - perl
       host:
         - openssl
-    build:
-      script:
-        file: build-rudof
     tests:
       - script:
-          - rudof --version
           - rudof --help
+          - rudof --version
+          - rudof --version  | ${{ grep }} "${{ version.replace(".", "\\") }}"
     about:
       license_file:
         - LICENSE-APACHE
@@ -50,6 +51,12 @@ outputs:
 
   - package:
       name: pyrudof
+    build:
+      skip: is_abi3 and not is_python_min
+      python:
+        version_independent: ${{ is_abi3 }}
+      script:
+        file: build-pyrudof
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -72,22 +79,33 @@ outputs:
         - openssl
         - pip
         - python
-        - python-abi3
-    build:
-      python:
-        version_independent: true
-      script:
-        file: build-pyrudof
+        - if: is_abi3
+          then:
+            - python-abi3
+      run:
+        - python
+      ignore_run_exports:
+        from_package:
+          - cross-python_${{ target_platform }}
     tests:
-      - python:
-          imports: pyrudof
-          pip_check: true
-          python_version:
-            - ${{ python_min }}.*
-            - ${{ python_check_max }}.*
+      - if: is_abi3
+        then:
+          python:
+            imports: pyrudof
+            pip_check: true
+            python_version:
+              - ${{ python_min }}.*
+              - ${{ python_check_max }}.*
+        else:
+          python:
+            imports: pyrudof
+            pip_check: true
       - requirements:
           run:
             - pytest-cov
+            - if: is_abi3
+              then:
+                - python !=${{ python_min }}.*
         files:
           source:
             - python/tests/
