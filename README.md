@@ -7,22 +7,26 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rudof-feedstock
 About rudof
 -----------
 
-Home: https://github.com/rudof-project/rudof
+Home: https://pypi.org/project/pyrudof
 
 Package license: Apache-2.0 OR MIT
 
-Summary: This module contains the Python bindings of rudof which are called pyrudof
+Summary: Python bindings for Rudof, RDF data shapes implementation in Rust
+
+Development: https://github.com/rudof-project/rudof/tree/master/python
 
 About rudof
 -----------
 
-Home: https://github.com/rudof-project/rudof
+Home: https://crates.io/crates/rudof_cli
 
 Package license: Apache-2.0 OR MIT
 
-Summary: rudof is a command-line tool to inspect and validate RDF data using ShEx or
-SHACL, and to allow conversion between different RDF data modeling languages
-like ShEx, SHACL, DCTAP, etc.
+Summary: RDF data shapes implementation in Rust
+
+Development: https://github.com/rudof-project/rudof/tree/master/rudof_cli
+
+rudof is a command-line tool to inspect and validate RDF data using ShEx or SHACL, and to allow conversion between different RDF data modeling languages like ShEx, SHACL, DCTAP, etc.
 
 Current build status
 ====================
