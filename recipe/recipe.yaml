@@ -23,6 +23,7 @@ outputs:
   - package:
       name: rudof
     build:
+      skip: not is_python_min
       script:
         file: build-rudof
     requirements:
@@ -42,7 +43,7 @@ outputs:
       - script:
           - rudof --help
           - rudof --version
-          - rudof --version  | ${{ grep }} "${{ version.replace(".", "\\") }}"
+          - rudof --version  | ${{ grep }} "${{ version | replace(".", "\\.") }}"
     about:
       license_file:
         - LICENSE-APACHE
