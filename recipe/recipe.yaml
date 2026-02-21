@@ -6,13 +6,18 @@ context:
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.14"
-  contains_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
-  unix_abi3_bin: |-
-    $(python -c "print(__import__('site').getsitepackages()[-1])")/pyrudof/pyrudof.abi3.so
-  win_abi3_bin: |-
-    site-packages\pyrudof\pyrudof.pyd
-  abi3_bin: ${{ unix_abi3_bin if unix else '%LIBRARY_PREFIX%\\' ~ win_abi3_bin }}
+  # posix-ish stuff
+  grep_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
   export: ${{ "export" if unix else "set" }}
+  ls: ${{ "ls -lathr" if unix else "dir" }}
+  # abi3audit
+  abi3_ext: ${{ "pyd" if win else "abi3.so" }}
+  unix_sp_dir: |-
+    $(python -c "print(__import__('site').getsitepackages()[-1])")/pyrudof
+  win_sp_dir: |-
+    Lib\site-packages\pyrudof
+  sp_dir: |-
+    ${{ "%PREFIX%\\" ~ win_sp_dir if win else unix_sp_dir }}
 
 recipe:
   name: rudof-split
@@ -53,7 +58,7 @@ outputs:
       - script:
           - rudof --help
           - rudof --version
-          - rudof --version | ${{ contains_version }}
+          - rudof --version | ${{ grep_version }}
     about:
       homepage: https://crates.io/crates/rudof_cli
       repository: https://github.com/rudof-project/rudof/tree/master/rudof_cli
@@ -132,12 +137,14 @@ outputs:
           source:
             - python/tests/
         script:
-          - python -c "print(__import__('pyrudof').__version__)" | ${{ contains_version }}
+          - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd python
           - pytest -vv --tb=long --color=yes
           - if: is_abi3
             then:
-              - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} "${{ abi3_bin }}"
+              - cd "${{ sp_dir }}"
+              - ${{ ls }}
+              - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} pyrudof.${{ abi3_ext }}
     about:
       homepage: https://pypi.org/project/pyrudof
       repository: https://github.com/rudof-project/rudof/tree/master/python
