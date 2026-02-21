@@ -10,8 +10,8 @@ context:
   unix_abi3_bin: |-
     $(python -c "print(__import__('site').getsitepackages()[-1])")/pyrudof/pyrudof.abi3.so
   win_abi3_bin: |-
-    %LIBRARY_PREFIX%\Lib\site-packages\pyrudof\pyrudof.pyd
-  abi3_bin: ${{ win_abi3_bin if win else unix_abi3_bin }}
+    site-packages\pyrudof\pyrudof.pyd
+  abi3_bin: ${{ unix_abi3_bin if unix else '%LIBRARY_PREFIX%\\' ~ win_abi3_bin }}
   export: ${{ "export" if unix else "set" }}
 
 recipe:
@@ -31,8 +31,8 @@ outputs:
     build:
       skip: not is_python_min
       script:
-        - ${{ set }} CARGO_PROFILE_RELEASE_STRIP=symbols
-        - ${{ set }} "OPENSSL_DIR=${{ '%LIBRARY_PREFIX%' if unix else '$PREFIX' }}"
+        - ${{ export }} CARGO_PROFILE_RELEASE_STRIP=symbols
+        - ${{ export }} "OPENSSL_DIR=${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}"
         - cd rudof_cli
         - cargo install --no-track --locked --path=. --profile=release "--root=${{ PREFIX }}"
         - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -73,8 +73,8 @@ outputs:
       python:
         version_independent: ${{ is_abi3 }}
       script:
-        - ${{ set }} CARGO_PROFILE_RELEASE_STRIP=symbols
-        - ${{ set }} "OPENSSL_DIR=${{ '%LIBRARY_PREFIX%' if unix else '$PREFIX' }}"
+        - ${{ export }} CARGO_PROFILE_RELEASE_STRIP=symbols
+        - ${{ export }} "OPENSSL_DIR=${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}"
         - cd python
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
         - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
