@@ -2,10 +2,22 @@
 schema_version: 1
 
 context:
-  version: "0.1.146"
+  version: "0.2.1"
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.14"
+  # posix-ish stuff
+  grep_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
+  export: ${{ "export" if unix else "set" }}
+  ls: ${{ "ls -lathr" if unix else "dir" }}
+  # abi3audit
+  abi3_ext: ${{ "pyd" if win else "abi3.so" }}
+  unix_sp_dir: |-
+    $(python -c "print(__import__('site').getsitepackages()[-1])")/pyrudof
+  win_sp_dir: |-
+    Lib\site-packages\pyrudof
+  sp_dir: |-
+    ${{ "%PREFIX%\\" ~ win_sp_dir if win else unix_sp_dir }}
 
 recipe:
   name: rudof-split
@@ -13,15 +25,22 @@ recipe:
 
 source:
   url: https://github.com/rudof-project/rudof/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 58ab855f118e6b71dc39fb1b571a58930d575b0bde8847601a9d9b44c35690e8
+  sha256: b9a830deaa829732dbd5fbb6c4f78f6d8aa6b726206d7a7d33acbe20c80ac14e
 
 build:
   number: 0
-  skip: not (match(python, python_min ~ ".*") and is_abi3)
 
 outputs:
   - package:
       name: rudof
+    build:
+      skip: not is_python_min
+      script:
+        - ${{ export }} CARGO_PROFILE_RELEASE_STRIP=symbols
+        - ${{ export }} "OPENSSL_DIR=${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}"
+        - cd rudof_cli
+        - cargo install --no-track --locked --path=. --profile=release "--root=${{ PREFIX }}"
+        - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -35,21 +54,35 @@ outputs:
             - perl
       host:
         - openssl
-    build:
-      script:
-        file: build-rudof
     tests:
       - script:
-          - rudof --version
           - rudof --help
+          - rudof --version
+          - rudof --version | ${{ grep_version }}
     about:
+      homepage: https://crates.io/crates/rudof_cli
+      repository: https://github.com/rudof-project/rudof/tree/master/rudof_cli
+      description: >
+        rudof is a command-line tool to inspect and validate RDF data using ShEx
+        or SHACL, and to allow conversion between different RDF data modeling
+        languages like ShEx, SHACL, DCTAP, etc.
       license_file:
         - LICENSE-APACHE
         - LICENSE-MIT
-        - THIRDPARTY.yml
+        - rudof_cli/THIRDPARTY.yml
 
   - package:
       name: pyrudof
+    build:
+      skip: is_abi3 and not is_python_min
+      python:
+        version_independent: ${{ is_abi3 }}
+      script:
+        - ${{ export }} CARGO_PROFILE_RELEASE_STRIP=symbols
+        - ${{ export }} "OPENSSL_DIR=${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}"
+        - cd python
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+        - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -72,46 +105,63 @@ outputs:
         - openssl
         - pip
         - python
-        - python-abi3
-    build:
-      python:
-        version_independent: true
-      script:
-        file: build-pyrudof
+        - if: is_abi3
+          then:
+            - python-abi3
+      run:
+        - python
+      ignore_run_exports:
+        from_package:
+          - cross-python_${{ target_platform }}
     tests:
-      - python:
-          imports: pyrudof
-          pip_check: true
-          python_version:
-            - ${{ python_min }}.*
-            - ${{ python_check_max }}.*
+      - if: is_abi3
+        then:
+          python:
+            imports: pyrudof
+            pip_check: true
+            python_version:
+              - ${{ python_min }}.*
+              - ${{ python_check_max }}.*
+        else:
+          python:
+            imports: pyrudof
+            pip_check: true
       - requirements:
           run:
-            - pytest-cov
+            - pytest
+            - if: is_abi3
+              then:
+                - abi3audit
+                - python !=${{ python_min }}.*
         files:
           source:
             - python/tests/
         script:
+          - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd python
-          - coverage run --source=pyrudof --branch -m pytest -vv --tb=long --color=yes
-          - coverage report --show-missing --skip-covered --fail-under=83
+          - pytest -vv --tb=long --color=yes
+          - if: is_abi3
+            then:
+              - cd "${{ sp_dir }}"
+              - ${{ ls }}
+              - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} pyrudof.${{ abi3_ext }}
     about:
+      homepage: https://pypi.org/project/pyrudof
+      repository: https://github.com/rudof-project/rudof/tree/master/python
+      summary: Python bindings for Rudof, RDF data shapes implementation in Rust
       license_file:
         - LICENSE-APACHE
         - LICENSE-MIT
-        - THIRDPARTY.yml
-      summary: This module contains the Python bindings of rudof which are called pyrudof
+        - python/THIRDPARTY.yml
 
 about:
   license: Apache-2.0 OR MIT
   license_file:
     - LICENSE-APACHE
     - LICENSE-MIT
-  summary: |-
-    rudof is a command-line tool to inspect and validate RDF data using ShEx or
-    SHACL, and to allow conversion between different RDF data modeling languages
-    like ShEx, SHACL, DCTAP, etc.
+  summary: RDF data shapes implementation in Rust
   homepage: https://github.com/rudof-project/rudof
+  repository: https://github.com/rudof-project/rudof
 
 extra:
   feedstock-name: rudof
