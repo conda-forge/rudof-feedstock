@@ -135,7 +135,7 @@ outputs:
                 - python !=${{ python_min }}.*
         files:
           source:
-            - python/examples/examples.toml
+            - python/examples/
             - python/tests/
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
