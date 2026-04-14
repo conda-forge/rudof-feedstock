@@ -137,6 +137,7 @@ outputs:
           source:
             - python/examples/
             - python/tests/
+            - rudof_lib/src/default_config.toml
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd python
