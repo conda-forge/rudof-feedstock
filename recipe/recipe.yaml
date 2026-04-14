@@ -2,14 +2,13 @@
 schema_version: 1
 
 context:
-  version: "0.2.7"
+  version: "0.2.9"
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.14"
   # posix-ish stuff
   grep_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
   export: ${{ "export" if unix else "set" }}
-  ls: ${{ "ls -lathr" if unix else "dir" }}
   # abi3audit
   abi3_ext: ${{ "pyd" if win else "abi3.so" }}
   unix_sp_dir: |-
@@ -25,7 +24,7 @@ recipe:
 
 source:
   url: https://github.com/rudof-project/rudof/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: c9e409c9d6f3fa9c6d5949610d1041a46ae53e0233c8d380af5fc5cc2a208cca
+  sha256: 1f3e649b89bba439d6a164278041515216269250483279f1b5d7fadb435fbf28
 
 build:
   number: 0
@@ -80,6 +79,7 @@ outputs:
       script:
         - ${{ export }} CARGO_PROFILE_RELEASE_STRIP=symbols
         - ${{ export }} "OPENSSL_DIR=${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}"
+        - ${{ export }} "PYO3_PYTHON=${{ '$PYTHON' if unix else '%PYTHON%' }}"
         - cd python
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
         - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -135,8 +135,10 @@ outputs:
                 - python !=${{ python_min }}.*
         files:
           source:
+            - examples/
             - python/examples/
             - python/tests/
+            - rudof_lib/src/default_config.toml
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd python
@@ -144,7 +146,6 @@ outputs:
           - if: is_abi3
             then:
               - cd "${{ sp_dir }}"
-              - ${{ ls }}
               - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} pyrudof.${{ abi3_ext }}
     about:
       homepage: https://pypi.org/project/pyrudof
