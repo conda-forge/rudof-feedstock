@@ -134,10 +134,10 @@ outputs:
                 - python !=${{ python_min }}.*
         files:
           source:
+            - examples/
             - python/examples/
             - python/tests/
             - rudof_lib/src/default_config.toml
-            - examples/simple.shex
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd python
