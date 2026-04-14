@@ -9,7 +9,6 @@ context:
   # posix-ish stuff
   grep_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
   export: ${{ "export" if unix else "set" }}
-  ls: ${{ "ls -lathr" if unix else "dir" }}
   # abi3audit
   abi3_ext: ${{ "pyd" if win else "abi3.so" }}
   unix_sp_dir: |-
@@ -138,6 +137,7 @@ outputs:
             - python/examples/
             - python/tests/
             - rudof_lib/src/default_config.toml
+            - examples/simple.shex
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd python
@@ -145,7 +145,6 @@ outputs:
           - if: is_abi3
             then:
               - cd "${{ sp_dir }}"
-              - ${{ ls }}
               - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} pyrudof.${{ abi3_ext }}
     about:
       homepage: https://pypi.org/project/pyrudof
