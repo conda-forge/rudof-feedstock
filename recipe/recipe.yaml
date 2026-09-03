@@ -41,6 +41,7 @@ outputs:
     requirements:
       build:
         - ${{ compiler("c") }}
+        - ${{ compiler("cxx") }}
         - ${{ compiler("rust") }}
         - ${{ stdlib("c") }}
         # fails with:
