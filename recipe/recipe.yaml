@@ -36,16 +36,7 @@ outputs:
           CARGO_PROFILE_RELEASE_LTO: fat
           CARGO_PROFILE_RELEASE_STRIP: symbols
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
-          ZSTD_SYS_USE_PKG_CONFIG: "1"
-          LZMA_API_STATIC: "0"
         content:
-          - if: unix
-            then:
-              - export PKG_CONFIG_SYSROOT_DIR="${PREFIX}"
-              - export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
-            else:
-              - set "PKG_CONFIG_SYSROOT_DIR=%PREFIX%"
-              - set "PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig"
           - cd rudof_cli
           - cargo install --no-track --locked --path=. --profile=release "--root=${{ PREFIX }}"
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -67,9 +58,7 @@ outputs:
           then:
             - perl
       host:
-        - liblzma-devel
         - openssl
-        - zstd
     tests:
       - script:
           - rudof --help
@@ -100,8 +89,6 @@ outputs:
           CARGO_PROFILE_RELEASE_STRIP: symbols
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
           PYO3_PYTHON: ${{ '$PYTHON' if unix else '%PYTHON%' }}
-          ZSTD_SYS_USE_PKG_CONFIG: "1"
-          LZMA_API_STATIC: "0"
         content:
           - if: unix
             then:
@@ -134,12 +121,10 @@ outputs:
           then:
             - perl
       host:
-        - liblzma-devel
         - maturin >=${{ maturin_min }},<${{ maturin_max }}
         - openssl
         - pip
         - python
-        - zstd
         - if: is_abi3
           then:
             - python-abi3
