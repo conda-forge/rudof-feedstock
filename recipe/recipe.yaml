@@ -56,7 +56,9 @@ outputs:
           then:
             - perl
       host:
+        - liblzma-devel
         - openssl
+        - zstd
     tests:
       - script:
           - rudof --help
@@ -112,10 +114,12 @@ outputs:
           then:
             - perl
       host:
+        - liblzma-devel
         - maturin >=${{ maturin_min }},<${{ maturin_max }}
         - openssl
         - pip
         - python
+        - zstd
         - if: is_abi3
           then:
             - python-abi3
