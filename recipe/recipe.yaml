@@ -95,16 +95,9 @@ outputs:
             else:
               - cp "${RECIPE_DIR}/cargo-auditable-wrapper.sh" "${BUILD_PREFIX}/bin/cargo-auditable-wrapper"
               - chmod 755 "${BUILD_PREFIX}/bin/cargo-auditable-wrapper"
-              # for cc-rs
-              #  error occurred in cc-rs: failed to find tool "c++": No such file or directory (os error 2)
-              - export CC_x86_64_unknown_linux_gnu="${CC_FOR_BUILD}"
-              - export CXX_x86_64_unknown_linux_gnu="${CXX_FOR_BUILD}"
-              - export CC_aarch64_unknown_linux_gnu="${CC}"
-              - export CXX_aarch64_unknown_linux_gnu="${CXX}"
-              - export HOST_CC="${CC_FOR_BUILD}"
-              - export HOST_CXX="${CXX_FOR_BUILD}"
           - cd bindings/python
-          - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+          - maturin build --release --out=dist
+          - ${{ PYTHON }} -m pip install pyrudof -vv --find-links=dist --no-index --no-deps --no-build-isolation --disable-pip-version-check
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     requirements:
       build:
