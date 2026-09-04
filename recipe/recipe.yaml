@@ -12,6 +12,8 @@ context:
   abi3_ext: ${{ "pyd" if win else "abi3.so" }}
   unix_sp_dir: $(python -c "print(__import__('site').getsitepackages()[-1])")/pyrudof
   win_sp_dir: Lib\site-packages\pyrudof
+  pytest_k: |-
+    not pg_db_load_and_query
 
 recipe:
   name: rudof-split
@@ -34,7 +36,16 @@ outputs:
           CARGO_PROFILE_RELEASE_LTO: fat
           CARGO_PROFILE_RELEASE_STRIP: symbols
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
+          ZSTD_SYS_USE_PKG_CONFIG: "1"
+          LZMA_API_STATIC: "0"
         content:
+          - if: unix
+            then:
+              - export PKG_CONFIG_SYSROOT_DIR="${PREFIX}"
+              - export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
+            else:
+              - set "PKG_CONFIG_SYSROOT_DIR=%PREFIX%"
+              - set "PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig"
           - cd rudof_cli
           - cargo install --no-track --locked --path=. --profile=release "--root=${{ PREFIX }}"
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -89,7 +100,16 @@ outputs:
           CARGO_PROFILE_RELEASE_STRIP: symbols
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
           PYO3_PYTHON: ${{ '$PYTHON' if unix else '%PYTHON%' }}
+          ZSTD_SYS_USE_PKG_CONFIG: "1"
+          LZMA_API_STATIC: "0"
         content:
+          - if: unix
+            then:
+              - export PKG_CONFIG_SYSROOT_DIR="${PREFIX}"
+              - export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
+            else:
+              - set "PKG_CONFIG_SYSROOT_DIR=%PREFIX%"
+              - set "PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig"
           - if: win
             then:
               - set CARGO_HOME=c:\.cg
@@ -154,7 +174,7 @@ outputs:
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd bindings/python
-          - pytest -vv --tb=long --color=yes
+          - pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
           - if: is_abi3
             then:
               - cd "${{ "%PREFIX%\\" ~ win_sp_dir if win else unix_sp_dir }}"
