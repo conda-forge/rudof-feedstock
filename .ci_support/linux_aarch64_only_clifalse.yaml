@@ -22,6 +22,8 @@ is_abi3:
 is_python_min:
 - true
 - false
+only_cli:
+- false
 openssl:
 - '3.5'
 pin_run_as_build:

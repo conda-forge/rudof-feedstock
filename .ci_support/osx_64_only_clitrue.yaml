@@ -26,6 +26,8 @@ is_python_min:
 - false
 macos_machine:
 - x86_64-apple-darwin13.4.0
+only_cli:
+- true
 openssl:
 - '3.5'
 pin_run_as_build:

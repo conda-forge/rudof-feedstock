@@ -1,3 +1,6 @@
 c_stdlib_version:
   - if: osx
     then: "13.3"
+only_cli:
+  - "true"
+  - "false"
