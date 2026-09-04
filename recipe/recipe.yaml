@@ -6,6 +6,12 @@ context:
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.14"
+  # mangle lib.ssl for ladybugdb to avoid:
+  #  LINK : fatal error LNK1181: cannot open input file 'ssl.lib'
+  mangle_win_libopenssl: |-
+    copy "%LIBRARY_LIB%\lib\libssl.lib" "%LIBRARY_LIB%\lib\ssl.lib"
+  unmangle_win_libopenssl: |-
+    del "%LIBRARY_LIB%\lib\ssl.lib"
   # posix-ish stuff
   grep_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
   # abi3audit
@@ -37,9 +43,13 @@ outputs:
           CARGO_PROFILE_RELEASE_STRIP: symbols
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
         content:
+          - if: win
+            then: ${{ mangle_win_libopenssl }}
           - cd rudof_cli
           - cargo install --no-track --locked --path=. --profile=release "--root=${{ PREFIX }}"
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+          - if: win
+            then: ${{ unmangle_win_libopenssl }}
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -90,13 +100,8 @@ outputs:
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
           PYO3_PYTHON: ${{ '$PYTHON' if unix else '%PYTHON%' }}
         content:
-          - if: unix
-            then:
-              - export PKG_CONFIG_SYSROOT_DIR="${PREFIX}"
-              - export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
-            else:
-              - set "PKG_CONFIG_SYSROOT_DIR=%PREFIX%"
-              - set "PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig"
+          - if: win
+            then: ${{ mangle_win_libopenssl }}
           - if: win
             then:
               - set CARGO_HOME=c:\.cg
@@ -107,6 +112,8 @@ outputs:
           - cd bindings/python
           - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+          - if: win
+            then: ${{ unmangle_win_libopenssl }}
     requirements:
       build:
         - ${{ compiler("c") }}
