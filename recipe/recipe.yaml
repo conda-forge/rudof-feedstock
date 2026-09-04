@@ -36,7 +36,7 @@ outputs:
   - package:
       name: rudof
     build:
-      skip: not (only_cli and is_python_min)
+      skip: not only_cli
       script:
         env:
           CARGO_PROFILE_RELEASE_LTO: fat

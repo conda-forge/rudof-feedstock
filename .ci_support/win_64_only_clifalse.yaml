@@ -10,9 +10,15 @@ cxx_compiler:
 - vs2022
 is_abi3:
 - true
+- true
+- true
+- true
 - false
 is_python_min:
 - true
+- false
+- false
+- false
 - false
 only_cli:
 - false
@@ -26,6 +32,9 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
+- 3.14.* *_cp314
 - 3.14.* *_cp314t
 python_min:
 - '3.11'
