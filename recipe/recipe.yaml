@@ -9,9 +9,9 @@ context:
   # mangle lib.ssl for ladybugdb to avoid:
   #  LINK : fatal error LNK1181: cannot open input file 'ssl.lib'
   mangle_win_libopenssl: |-
-    copy "%LIBRARY_LIB%\lib\libssl.lib" "%LIBRARY_LIB%\lib\ssl.lib"
+    copy "%LIBRARY_LIB%\libssl.lib" "%LIBRARY_LIB%\ssl.lib"
   unmangle_win_libopenssl: |-
-    del "%LIBRARY_LIB%\lib\ssl.lib"
+    del "%LIBRARY_LIB%\ssl.lib"
   # posix-ish stuff
   grep_version: ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
   # abi3audit
