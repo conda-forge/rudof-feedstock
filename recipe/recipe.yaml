@@ -103,15 +103,12 @@ outputs:
           OPENSSL_DIR: ${{ '$PREFIX' if unix else '%LIBRARY_PREFIX%' }}
           PYO3_PYTHON: ${{ '$PYTHON' if unix else '%PYTHON%' }}
         content:
-          # prepare the cargo-auditable wrapper for maturin, and ensure a
-          # "dirty" CARGO_HOME to reuse build intermediates
           - if: win
             then:
               - ${{ mangle_win_libopenssl }}
               - set CARGO_HOME=c:\.cg
               - copy "%RECIPE_DIR%\${{ cargo_wrapper }}" "%BUILD_PREFIX%\Library\bin\"
             else:
-              - set CARGO_HOME=/tmp/cg
               - cp "${RECIPE_DIR}/${{ cargo_wrapper }}" "${BUILD_PREFIX}/bin/"
               - chmod 755 "${BUILD_PREFIX}/bin/${{ cargo_wrapper }}"
           - cd bindings/python
@@ -182,7 +179,7 @@ outputs:
           - if: is_abi3
             then:
               - cd "${{ "${SP_DIR}" if unix else "%SP_DIR%" }}/pyrudof"
-              - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} pyrudof.${{ "pyd" if win else "abi3.so" }}
+              - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} _pyrudof.${{ "pyd" if win else "abi3.so" }}
     about:
       homepage: https://pypi.org/project/pyrudof
       repository: https://github.com/rudof-project/rudof/tree/master/bindings/python
