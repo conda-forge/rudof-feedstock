@@ -8,16 +8,6 @@ jobs:
     vmImage: $(VMIMAGE)
   strategy:
     matrix:
-      osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rconly_clitrue:
-        CONFIG: osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rconly_clitrue
-        UPLOAD_PACKAGES: 'True'
-        VMIMAGE: macOS-15
-        build_workspace_dir: ~/miniforge3/conda-bld
-        free_disk_space: skip
-        pagefile_size: 0
-        resize_partitions: false
-        store_build_artifacts: false
-        tools_install_dir: ~/miniforge3
       osx_64_channel_sourcesconda-forgeonly_clifalse:
         CONFIG: osx_64_channel_sourcesconda-forgeonly_clifalse
         UPLOAD_PACKAGES: 'True'
@@ -32,16 +22,6 @@ jobs:
         CONFIG: osx_64_channel_sourcesconda-forgeonly_clitrue
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
-        build_workspace_dir: ~/miniforge3/conda-bld
-        free_disk_space: skip
-        pagefile_size: 0
-        resize_partitions: false
-        store_build_artifacts: false
-        tools_install_dir: ~/miniforge3
-      osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rconly_clitrue:
-        CONFIG: osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rconly_clitrue
-        UPLOAD_PACKAGES: 'True'
-        VMIMAGE: macOS-15-arm64
         build_workspace_dir: ~/miniforge3/conda-bld
         free_disk_space: skip
         pagefile_size: 0
