@@ -24,8 +24,8 @@ is_python_min:
 - false
 - false
 - false
-only_cli:
-- false
+kind:
+- cli
 openssl:
 - '3.5'
 perl:

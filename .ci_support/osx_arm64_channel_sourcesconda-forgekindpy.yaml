@@ -34,10 +34,10 @@ is_python_min:
 - false
 - false
 - false
+kind:
+- py
 macos_machine:
 - arm64-apple-darwin20.0.0
-only_cli:
-- false
 openssl:
 - '3.5'
 pin_run_as_build:

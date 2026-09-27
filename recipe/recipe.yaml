@@ -33,10 +33,7 @@ outputs:
   - package:
       name: rudof
     build:
-      skip:
-        - not only_cli
-        - |-
-          "python_rc" in channel_sources
+      skip: kind != "cli" or ("python_rc" in channel_sources)
       script:
         env:
           CARGO_PROFILE_RELEASE_LTO: fat
@@ -93,7 +90,7 @@ outputs:
   - package:
       name: pyrudof
     build:
-      skip: only_cli or (is_abi3 and not is_python_min)
+      skip: kind != "py" or (is_abi3 and not is_python_min)
       python:
         version_independent: ${{ is_abi3 }}
       script:
