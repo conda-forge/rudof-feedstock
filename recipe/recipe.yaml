@@ -33,7 +33,10 @@ outputs:
   - package:
       name: rudof
     build:
-      skip: not only_cli
+      skip:
+        - not only_cli
+        - |-
+          "python_rc" in channel_sources
       script:
         env:
           CARGO_PROFILE_RELEASE_LTO: fat
