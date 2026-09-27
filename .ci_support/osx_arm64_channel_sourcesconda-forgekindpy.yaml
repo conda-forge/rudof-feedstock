@@ -34,10 +34,10 @@ is_python_min:
 - false
 - false
 - false
+kind:
+- py
 macos_machine:
-- x86_64-apple-darwin13.4.0
-only_cli:
-- true
+- arm64-apple-darwin20.0.0
 openssl:
 - '3.5'
 pin_run_as_build:
@@ -55,7 +55,7 @@ python_min:
 rust_compiler:
 - rust
 target_platform:
-- osx-64
+- osx-arm64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version

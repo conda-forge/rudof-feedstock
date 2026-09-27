@@ -1,7 +1,15 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '13.3'
+MACOSX_SDK_VERSION:
+- '13.3'
 c_compiler:
-- vs2022
+- clang
+c_compiler_version:
+- '21'
 c_stdlib:
-- vs
+- macosx_deployment_target
+c_stdlib_version:
+- '13.3'
 channel_sources:
 - conda-forge
 - conda-forge
@@ -11,7 +19,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2022
+- clangxx
+cxx_compiler_version:
+- '21'
 is_abi3:
 - true
 - true
@@ -24,12 +34,12 @@ is_python_min:
 - false
 - false
 - false
-only_cli:
-- true
+kind:
+- cli
+macos_machine:
+- x86_64-apple-darwin13.4.0
 openssl:
 - '3.5'
-perl:
-- 5.32.1
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -45,8 +55,10 @@ python_min:
 rust_compiler:
 - rust
 target_platform:
-- win-64
+- osx-64
 zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 - - python
   - is_python_min
   - channel_sources
