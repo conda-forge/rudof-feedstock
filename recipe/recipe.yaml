@@ -120,7 +120,7 @@ outputs:
   - package:
       name: pyrudof
     build:
-      skip: kind != "py" or (is_abi3 and not is_python_min)
+      skip: kind not in ["py", "abi3"] or (is_abi3 and not is_python_min)
       python:
         version_independent: ${{ is_abi3 }}
       script:

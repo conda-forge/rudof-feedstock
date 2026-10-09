@@ -4,3 +4,4 @@ c_stdlib_version:
 kind:
   - cli
   - py
+  - abi3
