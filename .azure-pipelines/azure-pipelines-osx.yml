@@ -8,6 +8,16 @@ jobs:
     vmImage: $(VMIMAGE)
   strategy:
     matrix:
+      osx_64_channel_sourcesconda-forgekindabi3:
+        CONFIG: osx_64_channel_sourcesconda-forgekindabi3
+        UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
+        build_workspace_dir: ~/miniforge3/conda-bld
+        free_disk_space: skip
+        pagefile_size: 0
+        resize_partitions: false
+        store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
       osx_64_channel_sourcesconda-forgekindcli:
         CONFIG: osx_64_channel_sourcesconda-forgekindcli
         UPLOAD_PACKAGES: 'True'
@@ -22,6 +32,16 @@ jobs:
         CONFIG: osx_64_channel_sourcesconda-forgekindpy
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
+        build_workspace_dir: ~/miniforge3/conda-bld
+        free_disk_space: skip
+        pagefile_size: 0
+        resize_partitions: false
+        store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
+      osx_arm64_channel_sourcesconda-forgekindabi3:
+        CONFIG: osx_arm64_channel_sourcesconda-forgekindabi3
+        UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15-arm64
         build_workspace_dir: ~/miniforge3/conda-bld
         free_disk_space: skip
         pagefile_size: 0
