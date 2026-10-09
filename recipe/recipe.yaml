@@ -28,7 +28,7 @@ source:
   sha256: f85dbde19c3d902d685ed0a5f933e1a02a712ee3ccc099a933d2e2efd88a9284
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
@@ -120,7 +120,10 @@ outputs:
   - package:
       name: pyrudof
     build:
-      skip: kind not in ["py", "abi3"] or (is_abi3 and not is_python_min)
+      skip:
+        - kind == "cli"
+        - kind == "py" and is_abi3
+        - kind == "abi3" and not (is_abi3 and is_python_min)
       python:
         version_independent: ${{ is_abi3 }}
       script:
