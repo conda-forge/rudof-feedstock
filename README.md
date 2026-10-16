@@ -53,45 +53,45 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>osx_64_channel_sourcesconda-forgekindabi3</td>
+              <td>osx_64_kindabi3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26549&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgekindabi3" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_kindabi3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_channel_sourcesconda-forgekindcli</td>
+              <td>osx_64_kindcli</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26549&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgekindcli" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_kindcli" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_channel_sourcesconda-forgekindpy</td>
+              <td>osx_64_kindpy</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26549&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgekindpy" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_kindpy" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_channel_sourcesconda-forgekindabi3</td>
+              <td>osx_arm64_kindabi3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26549&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgekindabi3" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_kindabi3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_channel_sourcesconda-forgekindcli</td>
+              <td>osx_arm64_kindcli</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26549&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgekindcli" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_kindcli" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_channel_sourcesconda-forgekindpy</td>
+              <td>osx_arm64_kindpy</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26549&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgekindpy" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rudof-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_kindpy" alt="variant">
                 </a>
               </td>
             </tr>
