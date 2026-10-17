@@ -2,10 +2,10 @@
 schema_version: 1
 
 context:
-  version: "0.3.25"
+  version: "0.3.26"
   maturin_min: "1"
   maturin_max: "2"
-  python_check_max: "3.14"
+  python_check_max: "3.15"
   cargo_wrapper: cargo-auditable-wrapper.${{ "sh" if unix else "bat" }}
   # mangle (lib)(ssl|crypto).lib for ladybugdb to avoid:
   #  LINK : fatal error LNK1181: cannot open input file 'ssl.lib'
@@ -25,10 +25,10 @@ recipe:
 
 source:
   url: https://github.com/rudof-project/rudof/archive/refs/tags/${{ version }}.tar.gz
-  sha256: f85dbde19c3d902d685ed0a5f933e1a02a712ee3ccc099a933d2e2efd88a9284
+  sha256: 1e3330a1ffd795d881db52403765c46d12054bbce75dae3cfd43effc12f61533
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - package:

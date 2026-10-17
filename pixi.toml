@@ -37,141 +37,141 @@ description = "List contents of all packages found in rattler-build build direct
 [feature.build.tasks.build]
 cmd = "rattler-build build --recipe recipe"
 description = "Build rudof-feedstock directly (without setup scripts), no particular variant specified"
-[feature.build.tasks."build-linux_64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindabi3.yaml --target-platform linux-64"
-description = "Build rudof-feedstock with variant linux_64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."debug-linux_64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindabi3.yaml --target-platform linux-64"
-description = "Debug rudof-feedstock with variant linux_64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_64_channel_sourcesconda-forgekindabi3"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindabi3.yaml"
-description = "List contents of rudof-feedstock packages built for variant linux_64_channel_sourcesconda-forgekindabi3"
-[feature.build.tasks."build-linux_64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindcli.yaml --target-platform linux-64"
-description = "Build rudof-feedstock with variant linux_64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."debug-linux_64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindcli.yaml --target-platform linux-64"
-description = "Debug rudof-feedstock with variant linux_64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_64_channel_sourcesconda-forgekindcli"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindcli.yaml"
-description = "List contents of rudof-feedstock packages built for variant linux_64_channel_sourcesconda-forgekindcli"
-[feature.build.tasks."build-linux_64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindpy.yaml --target-platform linux-64"
-description = "Build rudof-feedstock with variant linux_64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."debug-linux_64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindpy.yaml --target-platform linux-64"
-description = "Debug rudof-feedstock with variant linux_64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_64_channel_sourcesconda-forgekindpy"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forgekindpy.yaml"
-description = "List contents of rudof-feedstock packages built for variant linux_64_channel_sourcesconda-forgekindpy"
-[feature.build.tasks."build-linux_aarch64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindabi3.yaml --target-platform linux-aarch64"
-description = "Build rudof-feedstock with variant linux_aarch64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."debug-linux_aarch64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindabi3.yaml --target-platform linux-aarch64"
-description = "Debug rudof-feedstock with variant linux_aarch64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_aarch64_channel_sourcesconda-forgekindabi3"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindabi3.yaml"
-description = "List contents of rudof-feedstock packages built for variant linux_aarch64_channel_sourcesconda-forgekindabi3"
-[feature.build.tasks."build-linux_aarch64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindcli.yaml --target-platform linux-aarch64"
-description = "Build rudof-feedstock with variant linux_aarch64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."debug-linux_aarch64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindcli.yaml --target-platform linux-aarch64"
-description = "Debug rudof-feedstock with variant linux_aarch64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_aarch64_channel_sourcesconda-forgekindcli"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindcli.yaml"
-description = "List contents of rudof-feedstock packages built for variant linux_aarch64_channel_sourcesconda-forgekindcli"
-[feature.build.tasks."build-linux_aarch64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindpy.yaml --target-platform linux-aarch64"
-description = "Build rudof-feedstock with variant linux_aarch64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."debug-linux_aarch64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindpy.yaml --target-platform linux-aarch64"
-description = "Debug rudof-feedstock with variant linux_aarch64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_aarch64_channel_sourcesconda-forgekindpy"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_channel_sourcesconda-forgekindpy.yaml"
-description = "List contents of rudof-feedstock packages built for variant linux_aarch64_channel_sourcesconda-forgekindpy"
-[feature.build.tasks."build-osx_64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindabi3.yaml --target-platform osx-64"
-description = "Build rudof-feedstock with variant osx_64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."debug-osx_64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindabi3.yaml --target-platform osx-64"
-description = "Debug rudof-feedstock with variant osx_64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."inspect-osx_64_channel_sourcesconda-forgekindabi3"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindabi3.yaml"
-description = "List contents of rudof-feedstock packages built for variant osx_64_channel_sourcesconda-forgekindabi3"
-[feature.build.tasks."build-osx_64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindcli.yaml --target-platform osx-64"
-description = "Build rudof-feedstock with variant osx_64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."debug-osx_64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindcli.yaml --target-platform osx-64"
-description = "Debug rudof-feedstock with variant osx_64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."inspect-osx_64_channel_sourcesconda-forgekindcli"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindcli.yaml"
-description = "List contents of rudof-feedstock packages built for variant osx_64_channel_sourcesconda-forgekindcli"
-[feature.build.tasks."build-osx_64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindpy.yaml --target-platform osx-64"
-description = "Build rudof-feedstock with variant osx_64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."debug-osx_64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindpy.yaml --target-platform osx-64"
-description = "Debug rudof-feedstock with variant osx_64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."inspect-osx_64_channel_sourcesconda-forgekindpy"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_channel_sourcesconda-forgekindpy.yaml"
-description = "List contents of rudof-feedstock packages built for variant osx_64_channel_sourcesconda-forgekindpy"
-[feature.build.tasks."build-osx_arm64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindabi3.yaml --target-platform osx-arm64"
-description = "Build rudof-feedstock with variant osx_arm64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."debug-osx_arm64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindabi3.yaml --target-platform osx-arm64"
-description = "Debug rudof-feedstock with variant osx_arm64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."inspect-osx_arm64_channel_sourcesconda-forgekindabi3"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindabi3.yaml"
-description = "List contents of rudof-feedstock packages built for variant osx_arm64_channel_sourcesconda-forgekindabi3"
-[feature.build.tasks."build-osx_arm64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindcli.yaml --target-platform osx-arm64"
-description = "Build rudof-feedstock with variant osx_arm64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."debug-osx_arm64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindcli.yaml --target-platform osx-arm64"
-description = "Debug rudof-feedstock with variant osx_arm64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."inspect-osx_arm64_channel_sourcesconda-forgekindcli"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindcli.yaml"
-description = "List contents of rudof-feedstock packages built for variant osx_arm64_channel_sourcesconda-forgekindcli"
-[feature.build.tasks."build-osx_arm64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindpy.yaml --target-platform osx-arm64"
-description = "Build rudof-feedstock with variant osx_arm64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."debug-osx_arm64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindpy.yaml --target-platform osx-arm64"
-description = "Debug rudof-feedstock with variant osx_arm64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."inspect-osx_arm64_channel_sourcesconda-forgekindpy"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_channel_sourcesconda-forgekindpy.yaml"
-description = "List contents of rudof-feedstock packages built for variant osx_arm64_channel_sourcesconda-forgekindpy"
-[feature.build.tasks."build-win_64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgekindabi3.yaml --target-platform win-64"
-description = "Build rudof-feedstock with variant win_64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."debug-win_64_channel_sourcesconda-forgekindabi3"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgekindabi3.yaml --target-platform win-64"
-description = "Debug rudof-feedstock with variant win_64_channel_sourcesconda-forgekindabi3 directly (without setup scripts)"
-[feature.build.tasks."inspect-win_64_channel_sourcesconda-forgekindabi3"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_channel_sourcesconda-forgekindabi3.yaml"
-description = "List contents of rudof-feedstock packages built for variant win_64_channel_sourcesconda-forgekindabi3"
-[feature.build.tasks."build-win_64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgekindcli.yaml --target-platform win-64"
-description = "Build rudof-feedstock with variant win_64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."debug-win_64_channel_sourcesconda-forgekindcli"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgekindcli.yaml --target-platform win-64"
-description = "Debug rudof-feedstock with variant win_64_channel_sourcesconda-forgekindcli directly (without setup scripts)"
-[feature.build.tasks."inspect-win_64_channel_sourcesconda-forgekindcli"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_channel_sourcesconda-forgekindcli.yaml"
-description = "List contents of rudof-feedstock packages built for variant win_64_channel_sourcesconda-forgekindcli"
-[feature.build.tasks."build-win_64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgekindpy.yaml --target-platform win-64"
-description = "Build rudof-feedstock with variant win_64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."debug-win_64_channel_sourcesconda-forgekindpy"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_64_channel_sourcesconda-forgekindpy.yaml --target-platform win-64"
-description = "Debug rudof-feedstock with variant win_64_channel_sourcesconda-forgekindpy directly (without setup scripts)"
-[feature.build.tasks."inspect-win_64_channel_sourcesconda-forgekindpy"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_channel_sourcesconda-forgekindpy.yaml"
-description = "List contents of rudof-feedstock packages built for variant win_64_channel_sourcesconda-forgekindpy"
+[feature.build.tasks."build-linux_64_kindabi3"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_kindabi3.yaml --target-platform linux-64"
+description = "Build rudof-feedstock with variant linux_64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."debug-linux_64_kindabi3"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_kindabi3.yaml --target-platform linux-64"
+description = "Debug rudof-feedstock with variant linux_64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_64_kindabi3"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_kindabi3.yaml"
+description = "List contents of rudof-feedstock packages built for variant linux_64_kindabi3"
+[feature.build.tasks."build-linux_64_kindcli"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_kindcli.yaml --target-platform linux-64"
+description = "Build rudof-feedstock with variant linux_64_kindcli directly (without setup scripts)"
+[feature.build.tasks."debug-linux_64_kindcli"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_kindcli.yaml --target-platform linux-64"
+description = "Debug rudof-feedstock with variant linux_64_kindcli directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_64_kindcli"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_kindcli.yaml"
+description = "List contents of rudof-feedstock packages built for variant linux_64_kindcli"
+[feature.build.tasks."build-linux_64_kindpy"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_kindpy.yaml --target-platform linux-64"
+description = "Build rudof-feedstock with variant linux_64_kindpy directly (without setup scripts)"
+[feature.build.tasks."debug-linux_64_kindpy"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_kindpy.yaml --target-platform linux-64"
+description = "Debug rudof-feedstock with variant linux_64_kindpy directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_64_kindpy"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_kindpy.yaml"
+description = "List contents of rudof-feedstock packages built for variant linux_64_kindpy"
+[feature.build.tasks."build-linux_aarch64_kindabi3"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_kindabi3.yaml --target-platform linux-aarch64"
+description = "Build rudof-feedstock with variant linux_aarch64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."debug-linux_aarch64_kindabi3"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_kindabi3.yaml --target-platform linux-aarch64"
+description = "Debug rudof-feedstock with variant linux_aarch64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_aarch64_kindabi3"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_kindabi3.yaml"
+description = "List contents of rudof-feedstock packages built for variant linux_aarch64_kindabi3"
+[feature.build.tasks."build-linux_aarch64_kindcli"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_kindcli.yaml --target-platform linux-aarch64"
+description = "Build rudof-feedstock with variant linux_aarch64_kindcli directly (without setup scripts)"
+[feature.build.tasks."debug-linux_aarch64_kindcli"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_kindcli.yaml --target-platform linux-aarch64"
+description = "Debug rudof-feedstock with variant linux_aarch64_kindcli directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_aarch64_kindcli"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_kindcli.yaml"
+description = "List contents of rudof-feedstock packages built for variant linux_aarch64_kindcli"
+[feature.build.tasks."build-linux_aarch64_kindpy"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_kindpy.yaml --target-platform linux-aarch64"
+description = "Build rudof-feedstock with variant linux_aarch64_kindpy directly (without setup scripts)"
+[feature.build.tasks."debug-linux_aarch64_kindpy"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_kindpy.yaml --target-platform linux-aarch64"
+description = "Debug rudof-feedstock with variant linux_aarch64_kindpy directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_aarch64_kindpy"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_kindpy.yaml"
+description = "List contents of rudof-feedstock packages built for variant linux_aarch64_kindpy"
+[feature.build.tasks."build-osx_64_kindabi3"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_kindabi3.yaml --target-platform osx-64"
+description = "Build rudof-feedstock with variant osx_64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."debug-osx_64_kindabi3"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_64_kindabi3.yaml --target-platform osx-64"
+description = "Debug rudof-feedstock with variant osx_64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."inspect-osx_64_kindabi3"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_kindabi3.yaml"
+description = "List contents of rudof-feedstock packages built for variant osx_64_kindabi3"
+[feature.build.tasks."build-osx_64_kindcli"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_kindcli.yaml --target-platform osx-64"
+description = "Build rudof-feedstock with variant osx_64_kindcli directly (without setup scripts)"
+[feature.build.tasks."debug-osx_64_kindcli"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_64_kindcli.yaml --target-platform osx-64"
+description = "Debug rudof-feedstock with variant osx_64_kindcli directly (without setup scripts)"
+[feature.build.tasks."inspect-osx_64_kindcli"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_kindcli.yaml"
+description = "List contents of rudof-feedstock packages built for variant osx_64_kindcli"
+[feature.build.tasks."build-osx_64_kindpy"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_kindpy.yaml --target-platform osx-64"
+description = "Build rudof-feedstock with variant osx_64_kindpy directly (without setup scripts)"
+[feature.build.tasks."debug-osx_64_kindpy"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_64_kindpy.yaml --target-platform osx-64"
+description = "Debug rudof-feedstock with variant osx_64_kindpy directly (without setup scripts)"
+[feature.build.tasks."inspect-osx_64_kindpy"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_kindpy.yaml"
+description = "List contents of rudof-feedstock packages built for variant osx_64_kindpy"
+[feature.build.tasks."build-osx_arm64_kindabi3"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_kindabi3.yaml --target-platform osx-arm64"
+description = "Build rudof-feedstock with variant osx_arm64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."debug-osx_arm64_kindabi3"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_arm64_kindabi3.yaml --target-platform osx-arm64"
+description = "Debug rudof-feedstock with variant osx_arm64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."inspect-osx_arm64_kindabi3"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_kindabi3.yaml"
+description = "List contents of rudof-feedstock packages built for variant osx_arm64_kindabi3"
+[feature.build.tasks."build-osx_arm64_kindcli"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_kindcli.yaml --target-platform osx-arm64"
+description = "Build rudof-feedstock with variant osx_arm64_kindcli directly (without setup scripts)"
+[feature.build.tasks."debug-osx_arm64_kindcli"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_arm64_kindcli.yaml --target-platform osx-arm64"
+description = "Debug rudof-feedstock with variant osx_arm64_kindcli directly (without setup scripts)"
+[feature.build.tasks."inspect-osx_arm64_kindcli"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_kindcli.yaml"
+description = "List contents of rudof-feedstock packages built for variant osx_arm64_kindcli"
+[feature.build.tasks."build-osx_arm64_kindpy"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_kindpy.yaml --target-platform osx-arm64"
+description = "Build rudof-feedstock with variant osx_arm64_kindpy directly (without setup scripts)"
+[feature.build.tasks."debug-osx_arm64_kindpy"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/osx_arm64_kindpy.yaml --target-platform osx-arm64"
+description = "Debug rudof-feedstock with variant osx_arm64_kindpy directly (without setup scripts)"
+[feature.build.tasks."inspect-osx_arm64_kindpy"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_kindpy.yaml"
+description = "List contents of rudof-feedstock packages built for variant osx_arm64_kindpy"
+[feature.build.tasks."build-win_64_kindabi3"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_kindabi3.yaml --target-platform win-64"
+description = "Build rudof-feedstock with variant win_64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."debug-win_64_kindabi3"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_64_kindabi3.yaml --target-platform win-64"
+description = "Debug rudof-feedstock with variant win_64_kindabi3 directly (without setup scripts)"
+[feature.build.tasks."inspect-win_64_kindabi3"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_kindabi3.yaml"
+description = "List contents of rudof-feedstock packages built for variant win_64_kindabi3"
+[feature.build.tasks."build-win_64_kindcli"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_kindcli.yaml --target-platform win-64"
+description = "Build rudof-feedstock with variant win_64_kindcli directly (without setup scripts)"
+[feature.build.tasks."debug-win_64_kindcli"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_64_kindcli.yaml --target-platform win-64"
+description = "Debug rudof-feedstock with variant win_64_kindcli directly (without setup scripts)"
+[feature.build.tasks."inspect-win_64_kindcli"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_kindcli.yaml"
+description = "List contents of rudof-feedstock packages built for variant win_64_kindcli"
+[feature.build.tasks."build-win_64_kindpy"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_kindpy.yaml --target-platform win-64"
+description = "Build rudof-feedstock with variant win_64_kindpy directly (without setup scripts)"
+[feature.build.tasks."debug-win_64_kindpy"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_64_kindpy.yaml --target-platform win-64"
+description = "Debug rudof-feedstock with variant win_64_kindpy directly (without setup scripts)"
+[feature.build.tasks."inspect-win_64_kindpy"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_kindpy.yaml"
+description = "List contents of rudof-feedstock packages built for variant win_64_kindpy"
 
 [environments]
 build = ["build"]

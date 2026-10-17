@@ -12,10 +12,6 @@ c_stdlib_version:
 - '13.3'
 channel_sources:
 - conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -24,18 +20,12 @@ cxx_compiler_version:
 - '21'
 is_abi3:
 - true
-- true
-- true
-- true
 - false
 is_python_min:
 - true
 - false
-- false
-- false
-- false
 kind:
-- py
+- cli
 macos_machine:
 - arm64-apple-darwin20.0.0
 openssl:
@@ -46,9 +36,6 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.13.* *_cp313
-- 3.14.* *_cp314
 - 3.14.* *_cp314t
 python_min:
 - '3.11'
@@ -61,5 +48,4 @@ zip_keys:
   - cxx_compiler_version
 - - python
   - is_python_min
-  - channel_sources
   - is_abi3
