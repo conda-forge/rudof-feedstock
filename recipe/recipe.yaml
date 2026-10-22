@@ -2,10 +2,11 @@
 schema_version: 1
 
 context:
-  version: "0.3.31"
+  version: "0.3.33"
   maturin_min: "1"
   maturin_max: "2"
   python_check_max: "3.15"
+  cargo_update: cargo update webpki-root-certs rustls-webpki
   cargo_wrapper: cargo-auditable-wrapper.${{ "sh" if unix else "bat" }}
   # mangle (lib)(ssl|crypto).lib for ladybugdb to avoid:
   #  LINK : fatal error LNK1181: cannot open input file 'ssl.lib'
@@ -25,7 +26,7 @@ recipe:
 
 source:
   url: https://github.com/rudof-project/rudof/archive/refs/tags/${{ version }}.tar.gz
-  sha256: b3e2659efde92c31f022cceae693538489eedb6a21842f2734bd3a49c9388a3f
+  sha256: f2d56fafe6db9dac70e48af44c45ba86b0e57e01e9082223e629d5b06afd2f0c
 
 build:
   number: 0
@@ -47,6 +48,7 @@ outputs:
         content:
           - if: win
             then: ${{ mangle_win_libopenssl }}
+          - ${{ cargo_update }}
           - cd rudof_cli
           - cargo install --no-track --locked --path=. --profile=release "--root=${{ '${PREFIX}' if unix else '%LIBRARY_PREFIX%' }}"
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -142,6 +144,7 @@ outputs:
             else:
               - cp "${RECIPE_DIR}/${{ cargo_wrapper }}" "${BUILD_PREFIX}/bin/"
               - chmod 755 "${BUILD_PREFIX}/bin/${{ cargo_wrapper }}"
+          - ${{ cargo_update }}
           - cd bindings/python
           - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
           - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
