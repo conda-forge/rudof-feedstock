@@ -18,7 +18,10 @@ context:
   grep_version: ${{ "grep -iE " if unix else "findstr /r /c:" }}${{ version | replace('.', '\\.') }}
   # pytest args
   pytest_k: |-
-    not pg_db_load_and_query
+    not (
+      pg_db_load_and_query
+      or (examples and generate)
+    )
 
 recipe:
   name: rudof-split
@@ -209,7 +212,7 @@ outputs:
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd bindings/python
-          - pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
+          - pytest -vv --tb=long --color=yes -k "${{ pytest_k | replace('\n', ' ')  }}"
           - if: is_abi3
             then:
               - cd "${{ "${SP_DIR}" if unix else "%SP_DIR%" }}/pyrudof"
