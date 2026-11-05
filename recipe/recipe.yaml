@@ -89,7 +89,7 @@ outputs:
         - cargo-bundle-licenses
         - cmake
         - make
-        - pkg-config
+        - pkgconf
         - if: win
           then:
             - perl
@@ -163,7 +163,7 @@ outputs:
         - cargo-bundle-licenses
         - cmake
         - make
-        - pkg-config
+        - pkgconf
         - if: win
           then:
             - perl
@@ -212,7 +212,7 @@ outputs:
         script:
           - python -c "print(__import__('pyrudof').__version__)" | ${{ grep_version }}
           - cd bindings/python
-          - pytest -vv --tb=long --color=yes -k "${{ pytest_k | replace('\n', ' ')  }}"
+          - pytest -vv --tb=long --color=yes -k "${{ pytest_k | replace('\n', ' ') }}"
           - if: is_abi3
             then:
               - cd "${{ "${SP_DIR}" if unix else "%SP_DIR%" }}/pyrudof"
