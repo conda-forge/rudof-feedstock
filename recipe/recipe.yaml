@@ -21,6 +21,7 @@ context:
     not (
       pg_db_load_and_query
       or (examples and generate)
+      or (example and triples)
     )
 
 recipe:
