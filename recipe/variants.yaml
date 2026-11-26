@@ -5,3 +5,11 @@ kind:
   - cli
   - py
   - abi3
+c_compiler_version:
+  - if: osx
+    then:
+      - "21"
+cxx_compiler_version:
+  - if: osx
+    then:
+      - "21"
